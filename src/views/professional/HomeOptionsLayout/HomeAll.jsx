@@ -42,10 +42,10 @@ const HomeAll = () => {
                         console.log(res.data)
                         setRefreshAction(false)
                         if (res.data.error_code === 0) {
+                            setFilterArray(res.data.data)
                             if (res.data.data.job_details.length > 0) {
                                 if (res.data.data.job_details !== undefined) {
-                                    setFilterArray(res.data.data)
-
+                                    
                                     var filterNotAppliedJobs = res.data.data.job_details.filter((v) => {
                                         return v.applied_status === "not_applied"
                                     })
@@ -66,6 +66,10 @@ const HomeAll = () => {
                             }
                             else {
                                 toast.error(res.data.message)
+                                // setCardArray([])
+                                // setCardArrayDuplicate([])
+                                // setSelectedCardData([])
+                                // setGettingResponse(true)
                             }
                         }else{
                             toast.error(res.data.message)
